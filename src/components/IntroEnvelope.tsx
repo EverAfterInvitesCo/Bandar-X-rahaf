@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import envelopeVideo from '../../public/media/envelope.mp4';
+import envelopeImg from '../../public/media/envelope.png';
 
 interface IntroEnvelopeProps {
   onEnter: () => void;
@@ -10,11 +12,6 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Safely handle base URL for Vite & GitHub Pages subpaths
-  const baseUrl = import.meta.env.BASE_URL || '/';
-  const videoSrc = `${baseUrl}media/envelope.mp4`.replace(/\/+/g, '/');
-  const imageSrc = `${baseUrl}media/envelope.png`.replace(/\/+/g, '/');
-
   const handleStart = () => {
     if (isPlaying) return;
     setIsPlaying(true);
@@ -23,12 +20,9 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       videoRef.current.currentTime = 0;
       videoRef.current
         .play()
-        .then(() => {
-          // Video started playing smoothly
-        })
+        .then(() => {})
         .catch((err) => {
           console.warn('Video playback notice:', err);
-          // If video cannot play or is an empty placeholder, proceed smoothly after short delay
           setTimeout(() => {
             handleComplete();
           }, 2000);
@@ -61,7 +55,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       id="intro-envelope-container"
       onClick={!isPlaying ? handleStart : undefined}
     >
-      {/* 1. Full Frame Video Player for envelope.mp4 */}
+      {/* 1. Full Frame Video Player */}
       <div 
         className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
           isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -69,7 +63,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       >
         <video
           ref={videoRef}
-          src={videoSrc}
+          src={envelopeVideo}
           playsInline
           muted={false}
           autoPlay={false}
@@ -84,7 +78,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
         />
       </div>
 
-      {/* 2. Static Full Frame envelope.png with ONLY 'TAP TO ENTER' */}
+      {/* 2. Static Full Frame envelope image */}
       <AnimatePresence>
         {!isPlaying && (
           <motion.div
@@ -93,23 +87,14 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
             exit={{ opacity: 0, transition: { duration: 0.5 } }}
             className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
-            {/* Full-Frame Envelope Image */}
             <img
-              src={imageSrc}
+              src={envelopeImg}
               alt="Wedding Envelope"
               className="w-full h-full object-cover object-center"
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (target.src.indexOf('/envelope.png') === -1) {
-                  target.src = imageSrc;
-                }
-              }}
             />
 
-            {/* Subtle Vignette for depth */}
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            {/* ONLY "TAP TO ENTER" Pure Text Overlay (No button/box) */}
             <div className="absolute inset-x-0 bottom-12 sm:bottom-16 flex justify-center items-center pointer-events-none">
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
