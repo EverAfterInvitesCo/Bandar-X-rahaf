@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { SkipForward } from 'lucide-react';
 import envelopeVideo from '../../public/media/envelope.mp4';
 import envelopeImg from '../../public/media/envelope.png';
 
@@ -55,6 +56,21 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       id="intro-envelope-container"
       onClick={!isPlaying ? handleStart : undefined}
     >
+      {/* Skip Button */}
+      <motion.button
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleComplete();
+        }}
+        className="absolute top-6 right-6 z-40 px-4 py-2 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/25 text-white font-cinzel text-xs tracking-[0.2em] uppercase flex items-center gap-1.5 transition-all cursor-pointer shadow-lg"
+      >
+        <span>Skip</span>
+        <SkipForward className="w-3.5 h-3.5" />
+      </motion.button>
+
       {/* 1. Full Frame Video Player */}
       <div 
         className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${

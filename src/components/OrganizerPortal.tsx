@@ -5,24 +5,18 @@ import {
   Users, 
   UserCheck, 
   UserX, 
-  Database, 
-  Copy, 
-  Check, 
   Download, 
   Search, 
   RefreshCw, 
   Utensils, 
   Music, 
-  MessageSquare,
-  Key,
   Shield,
-  Layers,
   Lock,
   Unlock,
   AlertCircle
 } from 'lucide-react';
-import { RSVPData, SUPABASE_SQL_QUERY } from '../types';
-import { fetchRSVPs, getSupabaseConfig, saveSupabaseConfig } from '../lib/supabase';
+import { RSVPData } from '../types';
+import { fetchRSVPs } from '../lib/supabase';
 
 interface OrganizerPortalProps {
   isOpen: boolean;
@@ -34,17 +28,10 @@ export const OrganizerPortal: React.FC<OrganizerPortalProps> = ({ isOpen, onClos
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<'rsvps' | 'sql' | 'supabase'>('rsvps');
   const [rsvps, setRsvps] = useState<RSVPData[]>([]);
   const [loading, setLoading] = useState(false);
-  const [copiedSql, setCopiedSql] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'yes' | 'no'>('all');
-
-  // Supabase connection state
-  const [supabaseUrl, setSupabaseUrl] = useState('');
-  const [supabaseKey, setSupabaseKey] = useState('');
-  const [configSaved, setConfigSaved] = useState(false);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,25 +59,8 @@ export const OrganizerPortal: React.FC<OrganizerPortalProps> = ({ isOpen, onClos
   useEffect(() => {
     if (isOpen) {
       loadData();
-      const cfg = getSupabaseConfig();
-      setSupabaseUrl(cfg.url);
-      setSupabaseKey(cfg.key);
     }
   }, [isOpen]);
-
-  const handleCopySql = () => {
-    navigator.clipboard.writeText(SUPABASE_SQL_QUERY);
-    setCopiedSql(true);
-    setTimeout(() => setCopiedSql(false), 3000);
-  };
-
-  const handleSaveConfig = (e: React.FormEvent) => {
-    e.preventDefault();
-    saveSupabaseConfig(supabaseUrl.trim(), supabaseKey.trim());
-    setConfigSaved(true);
-    loadData();
-    setTimeout(() => setConfigSaved(false), 3000);
-  };
 
   // Summary Metrics
   const totalAttendingGuests = rsvps
@@ -237,47 +207,7 @@ export const OrganizerPortal: React.FC<OrganizerPortalProps> = ({ isOpen, onClos
               </button>
             </div>
 
-          {/* Navigation Tabs */}
-          <div className="flex border-b border-[#E8DFC8] bg-[#FAF7F2] px-6">
-            <button
-              onClick={() => setActiveTab('rsvps')}
-              className={`py-3.5 px-4 font-cinzel text-xs font-semibold tracking-wider uppercase border-b-2 transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'rsvps'
-                  ? 'border-[#16397C] text-[#16397C]'
-                  : 'border-transparent text-[#7B6A58] hover:text-[#2C2724]'
-              }`}
-            >
-              <Users className="w-4 h-4" />
-              <span>RSVP Submissions ({rsvps.length})</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('sql')}
-              className={`py-3.5 px-4 font-cinzel text-xs font-semibold tracking-wider uppercase border-b-2 transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'sql'
-                  ? 'border-[#16397C] text-[#16397C]'
-                  : 'border-transparent text-[#7B6A58] hover:text-[#2C2724]'
-              }`}
-            >
-              <Database className="w-4 h-4 text-[#C5A059]" />
-              <span>Supabase SQL Query</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('supabase')}
-              className={`py-3.5 px-4 font-cinzel text-xs font-semibold tracking-wider uppercase border-b-2 transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'supabase'
-                  ? 'border-[#16397C] text-[#16397C]'
-                  : 'border-transparent text-[#7B6A58] hover:text-[#2C2724]'
-              }`}
-            >
-              <Key className="w-4 h-4" />
-              <span>Supabase Config</span>
-            </button>
-          </div>
-
-          {/* Tab 1: RSVP List & Dashboard */}
-          {activeTab === 'rsvps' && (
+            {/* RSVP List & Dashboard Content */}
             <div className="p-6 overflow-y-auto flex-1 space-y-6">
               {/* Metrics Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -441,135 +371,18 @@ export const OrganizerPortal: React.FC<OrganizerPortalProps> = ({ isOpen, onClos
                 )}
               </div>
             </div>
-          )}
 
-          {/* Tab 2: Exact Supabase SQL Query Requested */}
-          {activeTab === 'sql' && (
-            <div className="p-6 overflow-y-auto flex-1 space-y-4">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-amber-50 p-4 rounded-xl border border-amber-200">
-                <div>
-                  <h4 className="font-cinzel font-semibold text-xs sm:text-sm text-[#7B5C28] uppercase tracking-wider">
-                    Supabase SQL Schema Ready for Deployment
-                  </h4>
-                  <p className="text-xs text-[#6B5E52] mt-0.5">
-                    Copy and run this exact SQL statement in your Supabase project's SQL Editor:
-                  </p>
-                </div>
-                <button
-                  onClick={handleCopySql}
-                  id="copy-supabase-sql-btn"
-                  className="px-5 py-2.5 rounded-full bg-[#16397C] text-white hover:bg-[#0F2857] font-cinzel text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 cursor-pointer shadow-sm"
-                >
-                  {copiedSql ? (
-                    <>
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span>Copied to Clipboard!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4" />
-                      <span>Copy SQL Query</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* Code Display */}
-              <div className="relative rounded-xl overflow-hidden border border-stone-800 bg-[#1E1E24] p-4 text-stone-200 font-mono text-xs shadow-inner">
-                <pre className="overflow-x-auto whitespace-pre leading-relaxed">
-                  {SUPABASE_SQL_QUERY}
-                </pre>
-              </div>
-
-              {/* Instructions Steps */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-[#5C534A]">
-                <div className="bg-white p-3 rounded-lg border border-[#E8DFC8]">
-                  <span className="font-cinzel font-bold text-[#16397C]">Step 1</span>
-                  <p className="mt-1">Log in to your <a href="https://supabase.com/dashboard" target="_blank" rel="noreferrer" className="text-[#16397C] underline font-medium">Supabase Dashboard</a> and open your project.</p>
-                </div>
-                <div className="bg-white p-3 rounded-lg border border-[#E8DFC8]">
-                  <span className="font-cinzel font-bold text-[#16397C]">Step 2</span>
-                  <p className="mt-1">Click <strong>SQL Editor</strong> on the left navigation bar, create a <strong>New Query</strong>, and paste the code above.</p>
-                </div>
-                <div className="bg-white p-3 rounded-lg border border-[#E8DFC8]">
-                  <span className="font-cinzel font-bold text-[#16397C]">Step 3</span>
-                  <p className="mt-1">Click <strong>Run</strong>. The table `public.rsvps` and security policies will be created instantly!</p>
-                </div>
-              </div>
+            {/* Footer */}
+            <div className="px-6 py-4 bg-[#FAF7F2] border-t border-[#E8DFC8] flex items-center justify-between text-xs text-[#7B6A58]">
+              <span>EverAfter Invites RSVP Engine</span>
+              <button
+                onClick={onClose}
+                className="px-4 py-2 rounded-lg bg-white border border-[#E8DFC8] hover:bg-[#F5EFE4] text-[#2C2724] font-cinzel uppercase tracking-wider cursor-pointer"
+              >
+                Close
+              </button>
             </div>
-          )}
-
-          {/* Tab 3: Supabase Credentials Input */}
-          {activeTab === 'supabase' && (
-            <div className="p-6 overflow-y-auto flex-1 space-y-6 max-w-2xl mx-auto">
-              <div className="text-center space-y-1">
-                <h4 className="font-cinzel text-lg font-semibold text-[#16397C]">
-                  Connect Your Live Supabase Database
-                </h4>
-                <p className="text-xs text-[#7B6A58]">
-                  Provide your Supabase credentials to sync guest RSVPs directly to your cloud database in real-time.
-                </p>
-              </div>
-
-              <form onSubmit={handleSaveConfig} className="bg-white p-6 rounded-xl border border-[#E8DFC8] space-y-4 shadow-sm">
-                <div>
-                  <label className="block font-cinzel text-xs uppercase tracking-wider text-[#2C2724] font-semibold mb-1">
-                    Supabase Project URL
-                  </label>
-                  <input
-                    type="url"
-                    value={supabaseUrl}
-                    onChange={(e) => setSupabaseUrl(e.target.value)}
-                    placeholder="https://xyzcompany.supabase.co"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E8DFC8] text-xs font-mono focus:outline-none focus:border-[#16397C]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-cinzel text-xs uppercase tracking-wider text-[#2C2724] font-semibold mb-1">
-                    Supabase Anon Public Key (anon key)
-                  </label>
-                  <input
-                    type="password"
-                    value={supabaseKey}
-                    onChange={(e) => setSupabaseKey(e.target.value)}
-                    placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E8DFC8] text-xs font-mono focus:outline-none focus:border-[#16397C]"
-                  />
-                  <p className="text-[11px] text-[#7B6A58] mt-1">
-                    Found in Supabase: Project Settings &rarr; API &rarr; Project API keys (anon / public).
-                  </p>
-                </div>
-
-                {configSaved && (
-                  <p className="text-xs text-emerald-700 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
-                    Supabase configuration saved &amp; synced successfully!
-                  </p>
-                )}
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl bg-[#16397C] text-white hover:bg-[#0F2857] font-cinzel text-xs uppercase tracking-wider transition-all cursor-pointer font-semibold"
-                  >
-                    Save &amp; Test Supabase Connection
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
-
-          {/* Footer */}
-          <div className="px-6 py-4 bg-[#FAF7F2] border-t border-[#E8DFC8] flex items-center justify-between text-xs text-[#7B6A58]">
-            <span>EverAfter Invites RSVP Engine</span>
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg bg-white border border-[#E8DFC8] hover:bg-[#F5EFE4] text-[#2C2724] font-cinzel uppercase tracking-wider cursor-pointer"
-            >
-              Close
-            </button>
-          </div>
-        </motion.div>
+          </motion.div>
         )}
       </div>
     </AnimatePresence>
