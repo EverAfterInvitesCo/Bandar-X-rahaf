@@ -1,0 +1,6 @@
+{
+  "name": "Bandar & Rahaf — Wedding Invitation",
+  "description": "Digital wedding invitation for Bandar Al Qatarneh & Rahaf Abuaisheh at Dead Sea Marriott Resort & Spa, Jordan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

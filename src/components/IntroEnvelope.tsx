@@ -1,0 +1,134 @@
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+interface IntroEnvelopeProps {
+  onEnter: () => void;
+}
+
+export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleStart = () => {
+    if (isPlaying) return;
+    setIsPlaying(true);
+
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current
+        .play()
+        .then(() => {
+          // Video started playing smoothly
+        })
+        .catch((err) => {
+          console.warn('Video playback notice:', err);
+          // If video cannot play or is an empty placeholder, proceed smoothly after short delay
+          setTimeout(() => {
+            handleComplete();
+          }, 2000);
+        });
+    } else {
+      setTimeout(() => {
+        handleComplete();
+      }, 1800);
+    }
+  };
+
+  const handleComplete = () => {
+    setIsFadingOut(true);
+    setTimeout(() => {
+      onEnter();
+    }, 800);
+  };
+
+  const handleVideoEnded = () => {
+    handleComplete();
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isFadingOut ? 0 : 1 }}
+      exit={{ opacity: 0, transition: { duration: 1.2, ease: [0.25, 1, 0.5, 1] } }}
+      transition={{ duration: 0.8 }}
+      className="fixed inset-0 z-50 w-screen h-screen bg-[#FAF7F2] overflow-hidden flex items-center justify-center cursor-pointer select-none"
+      id="intro-envelope-container"
+      onClick={!isPlaying ? handleStart : undefined}
+    >
+      {/* 1. Full Frame Video Player for envelope.mp4 */}
+      <div 
+        className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+          isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <video
+          ref={videoRef}
+          src="/media/envelope.mp4"
+          playsInline
+          muted={false}
+          autoPlay={false}
+          preload="auto"
+          onEnded={handleVideoEnded}
+          onError={() => {
+            if (isPlaying) {
+              setTimeout(handleComplete, 1600);
+            }
+          }}
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
+      {/* 2. Static Full Frame envelope.png with ONLY 'TAP TO ENTER' */}
+      <AnimatePresence>
+        {!isPlaying && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            className="absolute inset-0 w-full h-full flex items-center justify-center"
+          >
+            {/* Full-Frame Envelope Image */}
+            <img
+              src="/media/envelope.png"
+              alt="Wedding Envelope"
+              className="w-full h-full object-cover object-center"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src.indexOf('/envelope.png') === -1) {
+                  target.src = '/envelope.png';
+                }
+              }}
+            />
+
+            {/* Subtle Vignette for depth */}
+            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
+            {/* ONLY "TAP TO ENTER" Pure Text Overlay (No button/box) */}
+            <div className="absolute inset-x-0 bottom-12 sm:bottom-16 flex justify-center items-center pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ 
+                  opacity: [0.85, 1, 0.85], 
+                  y: [0, -5, 0],
+                  scale: [1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="text-center select-none"
+              >
+                <p className="font-cinzel font-semibold text-base sm:text-lg md:text-xl tracking-[0.35em] uppercase text-[#16397C] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
+                  TAP TO ENTER
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+

@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-cinzel: 'Cinzel', serif;
+    --font-decorative: 'Cinzel Decorative', 'Cinzel', serif;
+    --font-script: 'Pinyon Script', 'Alex Brush', cursive;
+    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF7F2;
+    color: #2C2724;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Wedding Font Classes */
+.font-wedding-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-cinzel-decorative {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+}
+
+.font-wedding-script {
+  font-family: 'Pinyon Script', 'Alex Brush', cursive;
+}
+
+.font-wedding-sans {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Luxury Shimmer & Gold Accents */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #B58A3E 0%, #E3C67C 40%, #9F762B 80%, #D8BC73 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-subtle {
+  border-color: rgba(197, 160, 89, 0.25);
+}
+
+.bg-champagne-light {
+  background-color: #FAF7F2;
+}
+
+.bg-champagne-card {
+  background-color: rgba(254, 252, 248, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+/* Stamp Blue Accent */
+.text-stamp-blue {
+  color: #16397C;
+}
+
+.bg-stamp-blue {
+  background-color: #16397C;
+}
+
+.border-stamp-blue {
+  border-color: #16397C;
+}
+
+/* Smooth Wax Seal Pulse */
+@keyframes seal-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(22, 57, 124, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px -5px rgba(22, 57, 124, 0.45);
+  }
+}
+
+.animate-seal-pulse {
+  animation: seal-pulse 3s infinite ease-in-out;
+}
+
+/* Gentle floating effect for romantic atmosphere */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s infinite ease-in-out;
+}
+
