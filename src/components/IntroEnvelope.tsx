@@ -10,6 +10,11 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Safely handle base URL for Vite & GitHub Pages subpaths
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const videoSrc = `${baseUrl}media/envelope.mp4`.replace(/\/+/g, '/');
+  const imageSrc = `${baseUrl}media/envelope.png`.replace(/\/+/g, '/');
+
   const handleStart = () => {
     if (isPlaying) return;
     setIsPlaying(true);
@@ -64,7 +69,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       >
         <video
           ref={videoRef}
-          src="/media/envelope.mp4"
+          src={videoSrc}
           playsInline
           muted={false}
           autoPlay={false}
@@ -90,13 +95,13 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
           >
             {/* Full-Frame Envelope Image */}
             <img
-              src="/media/envelope.png"
+              src={imageSrc}
               alt="Wedding Envelope"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
                 const target = e.currentTarget;
                 if (target.src.indexOf('/envelope.png') === -1) {
-                  target.src = '/envelope.png';
+                  target.src = imageSrc;
                 }
               }}
             />
@@ -131,4 +136,3 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
     </motion.div>
   );
 };
-
