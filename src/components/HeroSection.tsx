@@ -1,27 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { ChevronDown, Volume2, VolumeX } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
   const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
-    // Attempt auto-play with looping enabled
+    // Attempt auto-play with looping enabled (always muted)
     if (videoRef.current) {
       videoRef.current.play().catch((e) => {
         console.warn('Hero video autoplay notice:', e);
       });
     }
   }, []);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
 
   const scrollToNext = () => {
     const el = document.getElementById('save-the-date-section');
@@ -42,7 +34,7 @@ export const HeroSection: React.FC = () => {
           src="/media/background.mp4"
           autoPlay
           loop
-          muted={isMuted}
+          muted
           playsInline
           onError={() => setVideoError(true)}
           className="w-full h-full object-cover object-center scale-105"
@@ -64,16 +56,6 @@ export const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)]" />
       </div>
-
-      {/* Floating Mute/Unmute Control */}
-      <button
-        onClick={toggleMute}
-        id="hero-video-mute-btn"
-        aria-label="Toggle Video Sound"
-        className="absolute top-6 right-6 z-20 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white/90 backdrop-blur-md border border-white/20 transition-all cursor-pointer"
-      >
-        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5 text-[#E5C378]" />}
-      </button>
 
       {/* Main Overlay Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center text-white flex flex-col items-center">
