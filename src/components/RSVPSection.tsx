@@ -156,7 +156,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = () => {
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g. Yousef Al-Majali"
+                    placeholder="e.g. John Smith"
                     className="w-full px-4 py-3.5 rounded-xl border border-[#BA9267]/40 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#BA9267]/30 focus:border-[#BA9267] transition-all text-sm text-[#231F20] placeholder:text-[#9E9488] shadow-2xs"
                   />
                 </div>
@@ -171,7 +171,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = () => {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+962 7 9000 0000"
+                    placeholder="+1 (555) 000-0000"
                     className="w-full px-4 py-3.5 rounded-xl border border-[#BA9267]/40 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#BA9267]/30 focus:border-[#BA9267] transition-all text-sm text-[#231F20] placeholder:text-[#9E9488] shadow-2xs"
                   />
                 </div>
