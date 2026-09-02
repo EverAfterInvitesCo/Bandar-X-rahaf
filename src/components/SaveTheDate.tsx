@@ -11,8 +11,8 @@ interface TimeLeft {
 }
 
 export const SaveTheDate: React.FC = () => {
-  // Wedding Date: September 25, 2026 at 8:00 PM (20:00) UTC+3 (Jordan Time)
-  const targetDate = new Date('2026-09-25T20:00:00+03:00').getTime();
+  // Wedding Date: September 25, 2026 at 7:30 PM (19:30) UTC+3 (Jordan Time)
+  const targetDate = new Date('2026-09-25T19:30:00+03:00').getTime();
 
   const calculateTimeLeft = (): TimeLeft => {
     const now = new Date().getTime();
@@ -42,8 +42,8 @@ export const SaveTheDate: React.FC = () => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  // Google Calendar Event Link
-  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bandar+%26+Rahaf+Wedding&dates=20260925T170000Z/20260925T230000Z&details=Celebrating+the+wedding+of+Bandar+%26+Rahaf+at+Dead+Sea+Marriott+Resort+%26+Spa,+Jordan.&location=Dead+Sea+Marriott+Resort+%26+Spa,+Jordan`;
+  // Google Calendar Event Link (7:30 PM Jordan Time = 16:30 UTC to 22:30 UTC)
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bandar+%26+Rahaf+Wedding&dates=20260925T163000Z/20260925T223000Z&details=Celebrating+the+wedding+of+Bandar+%26+Rahaf+at+Dead+Sea+Marriott+Resort+%26+Spa,+Jordan.&location=Dead+Sea+Marriott+Resort+%26+Spa,+Jordan`;
 
   // Download .ics file
   const downloadICS = () => {
@@ -56,8 +56,8 @@ export const SaveTheDate: React.FC = () => {
       'BEGIN:VEVENT',
       'UID:wedding-bandar-rahaf-2026@everafterinvites.com',
       'DTSTAMP:20260901T000000Z',
-      'DTSTART:20260925T170000Z',
-      'DTEND:20260925T230000Z',
+      'DTSTART:20260925T163000Z',
+      'DTEND:20260925T223000Z',
       'SUMMARY:Bandar & Rahaf Wedding',
       'DESCRIPTION:Join us to celebrate the wedding of Bandar & Rahaf at the Dead Sea Marriott Resort & Spa, Jordan.',
       'LOCATION:Dead Sea Marriott Resort & Spa, Dead Sea Road, Sweimeh, Jordan',
@@ -103,7 +103,7 @@ export const SaveTheDate: React.FC = () => {
         </motion.div>
 
         {/* 
-          Typographic Stacked Date Display matching Image 1:
+          Typographic Stacked Date Display:
           25/
           09 26
         */}
@@ -137,7 +137,7 @@ export const SaveTheDate: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Italic Phrase matching Image 1: "We would be delighted to share this wonderful celebration with you on our wedding day." */}
+        {/* Italic Phrase */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export const SaveTheDate: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Elegant Diamond / Line Divider matching Image 1: --- ◆ --- ◆ --- */}
+        {/* Elegant Diamond / Line Divider */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0.8 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -165,7 +165,7 @@ export const SaveTheDate: React.FC = () => {
           <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#BA9267]/60" />
         </motion.div>
 
-        {/* Live Countdown Grid - Box-less warm palette */}
+        {/* Live Countdown Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -222,7 +222,7 @@ export const SaveTheDate: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Add to Calendar Action Buttons - Warm Palette */}
+        {/* Add to Calendar Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
