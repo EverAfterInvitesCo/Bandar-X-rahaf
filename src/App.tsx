@@ -35,7 +35,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Main Wedding Scroll Website */}
-      <div className={`transition-opacity duration-500 ease-out ${showIntro ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+      <div className={`transition-opacity duration-300 ease-out ${showIntro ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
         
         {/* Floating Navigation Header & Actions */}
         <FloatingNav 

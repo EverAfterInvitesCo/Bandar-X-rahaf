@@ -37,7 +37,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
     setIsFadingOut(true);
     setTimeout(() => {
       onEnter();
-    }, 400);
+    }, 250);
   };
 
   const handleVideoEnded = () => {
@@ -48,9 +48,9 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: isFadingOut ? 0 : 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.45, ease: 'easeOut' } }}
-      transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-50 w-screen h-screen bg-[#FAF7F2] overflow-hidden flex items-center justify-center cursor-pointer select-none pointer-events-auto"
+      exit={{ opacity: 0, transition: { duration: 0.25, ease: 'easeOut' } }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-50 w-screen h-screen bg-[#241E19] overflow-hidden flex items-center justify-center cursor-pointer select-none pointer-events-auto"
       id="intro-envelope-container"
       onClick={!isPlaying ? handleStart : undefined}
     >
@@ -71,13 +71,13 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
 
       {/* 1. Full Frame Video Player */}
       <div 
-        className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+        className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
           isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <video
           ref={videoRef}
-          src="/media/flower.mp4"
+          src="/media/flowers.mp4"
           poster="/media/flower.png"
           playsInline
           muted
@@ -86,13 +86,13 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
           onEnded={handleVideoEnded}
           onError={(e) => {
             const target = e.currentTarget;
-            if (target.src.indexOf('flower.mp4') !== -1) {
-              target.src = '/media/envelope.mp4';
+            if (target.src.indexOf('flowers.mp4') !== -1) {
+              target.src = '/media/flower.mp4';
               target.play().catch(() => {
-                if (isPlaying) setTimeout(handleComplete, 1600);
+                if (isPlaying) setTimeout(handleComplete, 1200);
               });
             } else if (isPlaying) {
-              setTimeout(handleComplete, 1600);
+              setTimeout(handleComplete, 1200);
             }
           }}
           className="w-full h-full object-cover object-center"
