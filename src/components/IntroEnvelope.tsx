@@ -37,7 +37,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
     setIsFadingOut(true);
     setTimeout(() => {
       onEnter();
-    }, 800);
+    }, 400);
   };
 
   const handleVideoEnded = () => {
@@ -48,9 +48,9 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: isFadingOut ? 0 : 1 }}
-      exit={{ opacity: 0, transition: { duration: 1.2, ease: [0.25, 1, 0.5, 1] } }}
-      transition={{ duration: 0.8 }}
-      className="fixed inset-0 z-50 w-screen h-screen bg-[#FAF7F2] overflow-hidden flex items-center justify-center cursor-pointer select-none"
+      exit={{ opacity: 0, transition: { duration: 0.45, ease: 'easeOut' } }}
+      transition={{ duration: 0.4 }}
+      className="fixed inset-0 z-50 w-screen h-screen bg-[#FAF7F2] overflow-hidden flex items-center justify-center cursor-pointer select-none pointer-events-auto"
       id="intro-envelope-container"
       onClick={!isPlaying ? handleStart : undefined}
     >
