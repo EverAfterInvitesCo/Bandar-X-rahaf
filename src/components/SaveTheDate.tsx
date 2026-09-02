@@ -135,6 +135,14 @@ export const SaveTheDate: React.FC = () => {
               </span>
             </div>
           </div>
+
+          {/* Added Time Text Display */}
+          <div className="mt-4 flex items-center justify-center gap-2 text-[#BA9267]">
+            <Clock className="w-4 h-4" />
+            <span className="font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase font-semibold text-[#231F20]">
+              7:30 PM
+            </span>
+          </div>
         </motion.div>
 
         {/* Italic Phrase */}
