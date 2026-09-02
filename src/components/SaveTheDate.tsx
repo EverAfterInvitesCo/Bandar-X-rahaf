@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, Clock, Heart, PlusCircle, Check, Download } from 'lucide-react';
+import { Calendar, Clock, PlusCircle, Check, Download } from 'lucide-react';
 
 interface TimeLeft {
   days: number;
@@ -43,7 +43,7 @@ export const SaveTheDate: React.FC = () => {
   }, [targetDate]);
 
   // Google Calendar Event Link
-  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bandar+%26+Rahaf+Wedding&dates=20260925T170000Z/20260925T230000Z&details=Celebrating+the+wedding+of+Bandar+Al+Qatarneh+%26+Rahaf+Abuaisheh+at+Dead+Sea+Marriott+Resort+%26+Spa,+Jordan.&location=Dead+Sea+Marriott+Resort+%26+Spa,+Jordan`;
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bandar+%26+Rahaf+Wedding&dates=20260925T170000Z/20260925T230000Z&details=Celebrating+the+wedding+of+Bandar+%26+Rahaf+at+Dead+Sea+Marriott+Resort+%26+Spa,+Jordan.&location=Dead+Sea+Marriott+Resort+%26+Spa,+Jordan`;
 
   // Download .ics file
   const downloadICS = () => {
@@ -59,7 +59,7 @@ export const SaveTheDate: React.FC = () => {
       'DTSTART:20260925T170000Z',
       'DTEND:20260925T230000Z',
       'SUMMARY:Bandar & Rahaf Wedding',
-      'DESCRIPTION:Join us to celebrate the wedding of Bandar Al Qatarneh & Rahaf Abuaisheh at the Dead Sea Marriott Resort & Spa, Jordan.',
+      'DESCRIPTION:Join us to celebrate the wedding of Bandar & Rahaf at the Dead Sea Marriott Resort & Spa, Jordan.',
       'LOCATION:Dead Sea Marriott Resort & Spa, Dead Sea Road, Sweimeh, Jordan',
       'STATUS:CONFIRMED',
       'END:VEVENT',
@@ -81,11 +81,11 @@ export const SaveTheDate: React.FC = () => {
   return (
     <section 
       id="save-the-date-section"
-      className="relative py-20 sm:py-28 px-6 overflow-hidden bg-transparent"
+      className="relative py-20 sm:py-28 px-6 overflow-hidden bg-transparent text-center"
     >
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      <div className="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
         
-        {/* Section Heading */}
+        {/* Section Heading: "Save The Date" */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,77 +93,95 @@ export const SaveTheDate: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center mb-8"
         >
-          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#16397C] font-semibold mb-3">
+          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#BA9267] font-semibold mb-3">
             Celebrate With Us
           </span>
-          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#2C2724] tracking-wide mb-3">
+          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#231F20] tracking-wide mb-3">
             Save The Date
           </h2>
-          <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto" />
+          <div className="w-16 h-[1.5px] bg-[#BA9267] mx-auto" />
         </motion.div>
 
-        {/* Date & Time Presentation - Box-less typography directly over background */}
+        {/* 
+          Typographic Stacked Date Display matching Image 1:
+          25/
+          09 26
+        */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-2xl mx-auto mb-12 py-4"
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="my-6 flex flex-col items-center select-none"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center divide-y md:divide-y-0 md:divide-x divide-[#C5A059]/40">
-            
-            {/* Date */}
-            <div className="flex flex-col items-center py-2">
-              <div className="w-12 h-12 rounded-full bg-[#16397C]/10 flex items-center justify-center text-[#16397C] mb-3">
-                <Calendar className="w-6 h-6" />
-              </div>
-              <p className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#7B6A58] mb-1">
-                The Date
-              </p>
-              <p className="font-wedding-serif text-2xl sm:text-3xl font-semibold text-[#16397C]">
-                25 September 2026
-              </p>
-              <p className="font-wedding-sans text-xs tracking-wider text-[#6B5E52] mt-1">
-                Friday Evening
-              </p>
+          <div className="flex flex-col items-center justify-center font-wedding-serif text-[#231F20] leading-none">
+            {/* Top row: 25 / */}
+            <div className="flex items-baseline justify-center tracking-tight">
+              <span className="text-7xl sm:text-8xl md:text-9xl font-light text-[#231F20]">
+                25
+              </span>
+              <span className="text-6xl sm:text-7xl md:text-8xl font-thin text-[#BA9267] ml-1 font-sans italic opacity-85">
+                /
+              </span>
             </div>
 
-            {/* Time */}
-            <div className="flex flex-col items-center py-2 pt-6 md:pt-2">
-              <div className="w-12 h-12 rounded-full bg-[#C5A059]/15 flex items-center justify-center text-[#9F762B] mb-3">
-                <Clock className="w-6 h-6" />
-              </div>
-              <p className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#7B6A58] mb-1">
-                The Time
-              </p>
-              <p className="font-wedding-serif text-2xl sm:text-3xl font-semibold text-[#2C2724]">
-                8:00 PM
-              </p>
-              <p className="font-wedding-sans text-xs tracking-wider text-[#6B5E52] mt-1">
-                Sunset Reception &amp; Dinner
-              </p>
+            {/* Bottom row: 09 26 */}
+            <div className="flex items-baseline justify-center gap-2 sm:gap-3 -mt-3 sm:-mt-5">
+              <span className="text-7xl sm:text-8xl md:text-9xl font-light text-[#231F20]">
+                09
+              </span>
+              <span className="text-4xl sm:text-5xl md:text-6xl font-light text-[#7B6A58] self-end mb-2 sm:mb-3">
+                26
+              </span>
             </div>
-
           </div>
         </motion.div>
 
-        {/* Live Countdown Grid - Box-less numbers directly over background */}
+        {/* Italic Phrase matching Image 1: "We would be delighted to share this wonderful celebration with you on our wedding day." */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-12"
+          className="max-w-xl mx-auto my-6 px-4"
         >
-          <p className="font-cinzel text-xs tracking-[0.3em] uppercase text-[#7B6A58] mb-6">
+          <p className="font-wedding-serif text-lg sm:text-xl md:text-2xl text-[#4A4036] italic leading-relaxed">
+            We would be delighted to share this wonderful celebration with you on our wedding day.
+          </p>
+        </motion.div>
+
+        {/* Elegant Diamond / Line Divider matching Image 1: --- ◆ --- ◆ --- */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0.8 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="my-8 flex items-center justify-center gap-3 text-[#BA9267] w-full max-w-md"
+        >
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[#BA9267]/60" />
+          <div className="w-1.5 h-1.5 rotate-45 bg-[#BA9267]" />
+          <div className="w-12 h-[1px] bg-[#BA9267]/60" />
+          <div className="w-1.5 h-1.5 rotate-45 bg-[#BA9267]" />
+          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#BA9267]/60" />
+        </motion.div>
+
+        {/* Live Countdown Grid - Box-less warm palette */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-10 w-full"
+        >
+          <p className="font-cinzel text-xs tracking-[0.3em] uppercase text-[#7B6A58] mb-6 font-semibold">
             Counting down to forever
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl mx-auto">
             
             {/* Days */}
             <div className="flex flex-col items-center py-2">
-              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#16397C] drop-shadow-xs">
+              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#231F20]">
                 {String(timeLeft.days).padStart(2, '0')}
               </span>
               <span className="font-cinzel text-[10px] sm:text-xs tracking-[0.25em] text-[#7B6A58] uppercase mt-2">
@@ -173,7 +191,7 @@ export const SaveTheDate: React.FC = () => {
 
             {/* Hours */}
             <div className="flex flex-col items-center py-2">
-              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#2C2724] drop-shadow-xs">
+              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#231F20]">
                 {String(timeLeft.hours).padStart(2, '0')}
               </span>
               <span className="font-cinzel text-[10px] sm:text-xs tracking-[0.25em] text-[#7B6A58] uppercase mt-2">
@@ -183,7 +201,7 @@ export const SaveTheDate: React.FC = () => {
 
             {/* Minutes */}
             <div className="flex flex-col items-center py-2">
-              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#2C2724] drop-shadow-xs">
+              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#231F20]">
                 {String(timeLeft.minutes).padStart(2, '0')}
               </span>
               <span className="font-cinzel text-[10px] sm:text-xs tracking-[0.25em] text-[#7B6A58] uppercase mt-2">
@@ -193,10 +211,10 @@ export const SaveTheDate: React.FC = () => {
 
             {/* Seconds */}
             <div className="flex flex-col items-center py-2">
-              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#C5A059] drop-shadow-xs">
+              <span className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#BA9267]">
                 {String(timeLeft.seconds).padStart(2, '0')}
               </span>
-              <span className="font-cinzel text-[10px] sm:text-xs tracking-[0.25em] text-[#7B6A58] uppercase mt-2">
+              <span className="font-cinzel text-[10px] sm:text-xs tracking-[0.25em] text-[#BA9267] font-semibold uppercase mt-2">
                 Seconds
               </span>
             </div>
@@ -204,12 +222,12 @@ export const SaveTheDate: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Add to Calendar Action Buttons */}
+        {/* Add to Calendar Action Buttons - Warm Palette */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
           className="flex flex-wrap items-center justify-center gap-3"
         >
           <a
@@ -217,16 +235,16 @@ export const SaveTheDate: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="add-google-calendar-btn"
-            className="px-6 py-3 rounded-full bg-[#16397C] text-white hover:bg-[#0F2857] transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2"
+            className="px-6 py-3 rounded-full bg-[#231F20] text-white hover:bg-[#3D352F] border border-[#BA9267]/40 transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-4 h-4 text-[#BA9267]" />
             <span>Google Calendar</span>
           </a>
 
           <button
             onClick={downloadICS}
             id="download-ics-calendar-btn"
-            className="px-6 py-3 rounded-full bg-white/90 text-[#2C2724] hover:bg-white border border-[#E8DFC8] transition-all shadow-sm hover:shadow-md font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2 cursor-pointer"
+            className="px-6 py-3 rounded-full bg-white/80 text-[#231F20] hover:bg-white border border-[#BA9267]/50 transition-all shadow-2xs hover:shadow-md font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2 cursor-pointer"
           >
             {calendarSaved ? (
               <>
@@ -235,7 +253,7 @@ export const SaveTheDate: React.FC = () => {
               </>
             ) : (
               <>
-                <Download className="w-4 h-4 text-[#9F762B]" />
+                <Download className="w-4 h-4 text-[#BA9267]" />
                 <span>Apple / Outlook (.ICS)</span>
               </>
             )}

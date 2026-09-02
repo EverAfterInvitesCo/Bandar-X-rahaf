@@ -22,13 +22,13 @@ export const AccommodationSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center mb-8"
         >
-          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#16397C] font-semibold mb-3">
+          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#BA9267] font-semibold mb-3">
             Guest Stay &amp; Comfort
           </span>
-          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#2C2724] tracking-wide mb-3">
+          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#231F20] tracking-wide mb-3">
             Accommodation
           </h2>
-          <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto" />
+          <div className="w-16 h-[1.5px] bg-[#BA9267] mx-auto" />
         </motion.div>
 
         {/* Box-less Content directly overlying background */}
@@ -40,12 +40,12 @@ export const AccommodationSection: React.FC = () => {
           className="text-center relative max-w-3xl mx-auto"
         >
           {/* Icon Badge */}
-          <div className="w-14 h-14 rounded-full bg-[#16397C]/10 text-[#16397C] flex items-center justify-center mx-auto mb-6">
+          <div className="w-14 h-14 rounded-full bg-[#BA9267]/15 text-[#BA9267] flex items-center justify-center mx-auto mb-6">
             <Hotel className="w-7 h-7" />
           </div>
 
           {/* Required Prompt Copy */}
-          <blockquote className="font-wedding-serif text-xl sm:text-2xl md:text-3xl text-[#2C2724] font-normal leading-relaxed max-w-2xl mx-auto mb-10 italic">
+          <blockquote className="font-wedding-serif text-xl sm:text-2xl md:text-3xl text-[#231F20] font-normal leading-relaxed max-w-2xl mx-auto mb-10 italic">
             &ldquo;We have partnered with our exceptional hotel. Please mention our wedding when booking to enjoy exclusive rates reserved for our guests.&rdquo;
           </blockquote>
 
@@ -58,19 +58,19 @@ export const AccommodationSection: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="hotel-booking-btn"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#16397C] text-white hover:bg-[#0F2857] transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#231F20] text-white hover:bg-[#3D352F] border border-[#BA9267]/40 transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center justify-center gap-2"
             >
               <span>Book Your Stay at Hotel</span>
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4 text-[#BA9267]" />
             </a>
 
             {/* Direct Phone Dial Number */}
             <a
               href={hotelPhoneDial}
               id="hotel-dial-btn"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/80 text-[#2C2724] hover:bg-white border border-[#D4AF37]/50 transition-all shadow-xs hover:shadow-md font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/80 text-[#231F20] hover:bg-white border border-[#BA9267]/50 transition-all shadow-2xs hover:shadow-md font-cinzel text-xs tracking-[0.2em] uppercase inline-flex items-center justify-center gap-2"
             >
-              <Phone className="w-4 h-4 text-[#C5A059]" />
+              <Phone className="w-4 h-4 text-[#BA9267]" />
               <span>Call {hotelPhoneNumber}</span>
             </a>
 

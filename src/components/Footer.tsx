@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
   return (
     <footer 
       id="wedding-footer"
-      className="relative z-10 py-10 px-6 border-t border-[#E8DFC8]/60 bg-transparent text-center"
+      className="relative z-10 py-10 px-6 border-t border-[#BA9267]/30 bg-transparent text-center"
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-4">
         
@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`everafterinvites on ${social.name}`}
-              className="w-9 h-9 rounded-full bg-white/90 border border-[#E8DFC8] text-[#16397C] hover:text-white hover:bg-[#16397C] hover:border-[#16397C] flex items-center justify-center transition-all shadow-2xs hover:scale-105"
+              className="w-9 h-9 rounded-full bg-white/80 border border-[#BA9267]/40 text-[#231F20] hover:text-white hover:bg-[#231F20] hover:border-[#231F20] flex items-center justify-center transition-all shadow-2xs hover:scale-105"
             >
               {social.icon}
             </a>
@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
             href="https://www.instagram.com/_everafterinvites_/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="font-semibold text-[#16397C] hover:underline"
+            className="font-bold text-[#BA9267] hover:underline"
           >
             everafterinvites
           </a>

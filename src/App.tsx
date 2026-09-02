@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2724] relative selection:bg-[#16397C]/15 selection:text-[#16397C]">
+    <div className="min-h-screen bg-[#F6F0E6] text-[#231F20] relative selection:bg-[#BA9267]/25 selection:text-[#231F20]">
       
       {/* Intro Window with envelope.png thumbnail & envelope.mp4 playback */}
       <AnimatePresence mode="wait">
@@ -47,14 +47,10 @@ export default function App() {
         <HeroSection />
 
         {/* 
-          All Sections After Hero Use `bg.png` for Unified Seamless Background
+          All Sections After Hero on a Rich Crème / Luxury Beige Canvas
         */}
         <div 
-          className="relative bg-repeat bg-top"
-          style={{
-            backgroundImage: `url('/media/bg.png'), url('/bg.png')`,
-            backgroundColor: '#FAF7F2'
-          }}
+          className="relative bg-[#F6F0E6]"
         >
           {/* 2. Save The Date & Live Countdown Section */}
           <div className="relative z-10">

@@ -23,16 +23,16 @@ export const VenueSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#16397C] font-semibold mb-3 inline-block">
+          <span className="font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase text-[#BA9267] font-semibold mb-3 inline-block">
             The Location
           </span>
-          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#2C2724] tracking-wide mb-3">
+          <h2 className="font-wedding-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#231F20] tracking-wide mb-3">
             Dead Sea Marriott Resort &amp; Spa
           </h2>
-          <p className="font-wedding-script text-3xl sm:text-4xl text-[#C5A059] mb-4">
+          <p className="font-wedding-script text-3xl sm:text-4xl text-[#BA9267] mb-4">
             Jordan
           </p>
-          <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto" />
+          <div className="w-16 h-[1.5px] bg-[#BA9267] mx-auto" />
         </motion.div>
 
         {/* Hand-drawn Venue Illustration (venue.png) - Clean Transparent Floating Layout with NO Box */}
@@ -71,13 +71,13 @@ export const VenueSection: React.FC = () => {
             className="lg:col-span-5 flex flex-col justify-center space-y-6"
           >
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 text-[#16397C]">
-                <MapPin className="w-5 h-5 text-[#16397C]" />
+              <div className="inline-flex items-center gap-2 text-[#BA9267]">
+                <MapPin className="w-5 h-5 text-[#BA9267]" />
                 <span className="font-cinzel text-xs uppercase tracking-[0.25em] font-semibold">
                   Sweimeh, Dead Sea Road
                 </span>
               </div>
-              <h3 className="font-wedding-serif text-2xl sm:text-3xl text-[#2C2724] font-normal leading-snug">
+              <h3 className="font-wedding-serif text-2xl sm:text-3xl text-[#231F20] font-normal leading-snug">
                 Where the turquoise waters meet timeless desert horizons
               </h3>
               <p className="font-wedding-sans text-sm leading-relaxed text-[#5C534A]">
@@ -86,11 +86,11 @@ export const VenueSection: React.FC = () => {
             </div>
 
             {/* Quick Details List */}
-            <div className="space-y-2.5 pt-2 border-t border-[#D4AF37]/30">
+            <div className="space-y-2.5 pt-2 border-t border-[#BA9267]/30">
               <div className="flex items-start gap-3">
-                <Compass className="w-4 h-4 text-[#C5A059] mt-1 shrink-0" />
+                <Compass className="w-4 h-4 text-[#BA9267] mt-1 shrink-0" />
                 <div>
-                  <p className="font-cinzel text-xs font-semibold uppercase tracking-wider text-[#2C2724]">
+                  <p className="font-cinzel text-xs font-semibold uppercase tracking-wider text-[#231F20]">
                     Address
                   </p>
                   <p className="font-wedding-sans text-xs text-[#6B5E52]">
@@ -107,10 +107,10 @@ export const VenueSection: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="venue-directions-link"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#16397C] text-white hover:bg-[#0F2857] transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#231F20] text-white hover:bg-[#3D352F] border border-[#BA9267]/40 transition-all shadow-md hover:shadow-lg font-cinzel text-xs tracking-[0.2em] uppercase"
               >
                 <span>Get Directions</span>
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 text-[#BA9267]" />
               </a>
             </div>
           </motion.div>
@@ -138,8 +138,8 @@ export const VenueSection: React.FC = () => {
               
               {/* Map Floating Badge */}
               <div className="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-lg bg-white/90 backdrop-blur-md shadow-md border border-[#E8DFC8] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-cinzel text-[11px] font-semibold text-[#16397C] tracking-wider uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#BA9267] animate-pulse" />
+                <span className="font-cinzel text-[11px] font-semibold text-[#231F20] tracking-wider uppercase">
                   Dead Sea Marriott Resort &amp; Spa
                 </span>
               </div>

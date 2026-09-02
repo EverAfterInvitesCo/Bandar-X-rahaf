@@ -5,6 +5,8 @@ export interface RSVPData {
   email?: string;
   phone?: string;
   attending: 'yes' | 'no';
+  has_plus_one?: boolean;
+  plus_one_name?: string;
   guest_count: number;
   dietary_restrictions?: string;
   song_request?: string;
@@ -30,6 +32,8 @@ CREATE TABLE IF NOT EXISTS public.rsvps (
     phone TEXT,
     attending TEXT NOT NULL CHECK (attending IN ('yes', 'no')),
     guest_count INTEGER DEFAULT 1 NOT NULL,
+    has_plus_one BOOLEAN DEFAULT FALSE,
+    plus_one_name TEXT,
     dietary_restrictions TEXT,
     song_request TEXT,
     message TEXT

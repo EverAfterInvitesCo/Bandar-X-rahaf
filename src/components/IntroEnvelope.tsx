@@ -81,7 +81,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
           ref={videoRef}
           src={envelopeVideo}
           playsInline
-          muted={false}
+          muted
           autoPlay={false}
           preload="auto"
           onEnded={handleVideoEnded}
@@ -126,7 +126,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
                 }}
                 className="text-center select-none"
               >
-                <p className="font-cinzel font-semibold text-base sm:text-lg md:text-xl tracking-[0.35em] uppercase text-[#16397C] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
+                <p className="font-cinzel font-semibold text-base sm:text-lg md:text-xl tracking-[0.35em] uppercase text-[#231F20] drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
                   TAP TO ENTER
                 </p>
               </motion.div>

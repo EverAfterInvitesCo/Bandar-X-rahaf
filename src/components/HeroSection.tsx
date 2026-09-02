@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
   const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
-    // Attempt auto-play with looping enabled (always muted)
+    // Attempt auto-play with looping enabled (silent/muted)
     if (videoRef.current) {
       videoRef.current.play().catch((e) => {
         console.warn('Hero video autoplay notice:', e);
@@ -27,7 +27,7 @@ export const HeroSection: React.FC = () => {
       id="hero-section"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#241E19]"
     >
-      {/* Background Video (`background.mp4`) */}
+      {/* Background Video (`background.mp4`) - Completely silent / muted */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -67,28 +67,28 @@ export const HeroSection: React.FC = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="font-cinzel text-xs sm:text-sm md:text-base tracking-[0.35em] text-[#E8DFC8] uppercase font-light mb-4 drop-shadow-md"
         >
-          Together with their familes ,
+          Together with their families,
         </motion.p>
 
-        {/* Text 2: Bandar Al Qatarneh & Rahaf Abuaisheh */}
+        {/* Text 2: Bandar & Rahaf (Only first names without family names) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="my-3 sm:my-5"
         >
-          <h1 className="font-wedding-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide text-[#FAF7F2] drop-shadow-lg leading-[1.15]">
-            Bandar Al Qatarneh
+          <h1 className="font-wedding-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-wide text-[#FAF7F2] drop-shadow-lg leading-[1.1]">
+            Bandar
           </h1>
           
           <div className="my-2 sm:my-3">
-            <span className="font-wedding-script text-4xl sm:text-5xl md:text-6xl text-[#E5C378] inline-block px-4">
+            <span className="font-wedding-script text-5xl sm:text-6xl md:text-7xl text-[#C5A059] inline-block px-4">
               &amp;
             </span>
           </div>
 
-          <h1 className="font-wedding-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide text-[#FAF7F2] drop-shadow-lg leading-[1.15]">
-            Rahaf Abuaisheh
+          <h1 className="font-wedding-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-wide text-[#FAF7F2] drop-shadow-lg leading-[1.1]">
+            Rahaf
           </h1>
         </motion.div>
 
