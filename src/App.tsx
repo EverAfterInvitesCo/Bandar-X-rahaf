@@ -27,7 +27,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F6F0E6] text-[#231F20] relative selection:bg-[#BA9267]/25 selection:text-[#231F20]">
       
-      {/* Intro Window with envelope.png thumbnail & envelope.mp4 playback */}
+      {/* Intro Window with flower.png thumbnail & flower.mp4 playback */}
       <AnimatePresence mode="wait">
         {showIntro && (
           <IntroEnvelope onEnter={handleEnterInvite} />

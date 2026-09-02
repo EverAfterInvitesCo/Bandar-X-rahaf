@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SkipForward } from 'lucide-react';
-import envelopeVideo from '../../public/media/envelope.mp4';
-import envelopeImg from '../../public/media/envelope.png';
 
 interface IntroEnvelopeProps {
   onEnter: () => void;
@@ -79,14 +77,21 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
       >
         <video
           ref={videoRef}
-          src={envelopeVideo}
+          src="/media/flower.mp4"
+          poster="/media/flower.png"
           playsInline
           muted
           autoPlay={false}
           preload="auto"
           onEnded={handleVideoEnded}
-          onError={() => {
-            if (isPlaying) {
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (target.src.indexOf('flower.mp4') !== -1) {
+              target.src = '/media/envelope.mp4';
+              target.play().catch(() => {
+                if (isPlaying) setTimeout(handleComplete, 1600);
+              });
+            } else if (isPlaying) {
               setTimeout(handleComplete, 1600);
             }
           }}
@@ -94,7 +99,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
         />
       </div>
 
-      {/* 2. Static Full Frame envelope image */}
+      {/* 2. Static Full Frame flower.png thumbnail with 'TAP TO ENTER' */}
       <AnimatePresence>
         {!isPlaying && (
           <motion.div
@@ -104,8 +109,14 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
             className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
             <img
-              src={envelopeImg}
-              alt="Wedding Envelope"
+              src="/media/flower.png"
+              alt="Wedding Invitation Cover"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src.indexOf('/flower.png') === -1) {
+                  target.src = '/flower.png';
+                }
+              }}
               className="w-full h-full object-cover object-center"
             />
 
@@ -126,7 +137,7 @@ export const IntroEnvelope: React.FC<IntroEnvelopeProps> = ({ onEnter }) => {
                 }}
                 className="text-center select-none"
               >
-                <p className="font-cinzel font-semibold text-base sm:text-lg md:text-xl tracking-[0.35em] uppercase text-[#231F20] drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
+                <p className="font-cinzel font-semibold text-base sm:text-lg md:text-xl tracking-[0.35em] uppercase text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
                   TAP TO ENTER
                 </p>
               </motion.div>
